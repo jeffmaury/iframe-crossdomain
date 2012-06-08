@@ -1,5 +1,30 @@
 <html>
+  <script type="text/javascript">
+      
+          // Forward message to the "real" iFrame that should be
+          // hosted somewhere in the parent page
+        function ForwardMessage() {
+          var message = document.location.hash;
+          if (message.length > 0) {
+            message = message.substr(1);
+            document.getElementById("dynamic").innerHTML="Request for " + message;
+          }
+        }        // Hook up the Forward Message dependent on browser. FF will only raise the
+        // resize event on the window / body. 
+        if (window.addEventListener){
+                window.addEventListener('resize', ForwardMessage, false); 
+            } else if (document.body.attachEvent){
+                window.attachEvent('onresize', ForwardMessage);
+            }
+ 
+            // Ensure ForwardMessage is called once after the page is loaded so that
+            // any message sent during page load is eventually passsed on. Particularly
+            // needed if you are looking at resizing content.
+        setTimeout('ForwardMessage();', 0);
+        
+      </script>
 <body>
 Sample demo for iframe cross domain communication
+<p id="dynamic">The place where id is stored</p>
 </body>
 </html>
