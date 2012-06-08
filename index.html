@@ -9,21 +9,25 @@
             message = message.substr(1);
             document.getElementById("dynamic").innerHTML="Request for " + message;
           }
-        }        // Hook up the Forward Message dependent on browser. FF will only raise the
-        // resize event on the window / body. 
-        if (window.addEventListener){
-                window.addEventListener('resize', ForwardMessage, false); 
-            } else if (document.body.attachEvent){
-                document.body.attachEvent('onresize', ForwardMessage);
-            }
+        }
+          
+        // Hook up the Forward Message dependent on browser. FF will only raise the
+        // resize event on the window / body.
+        function init() {
+          if (window.addEventListener){
+                  window.addEventListener('resize', ForwardMessage, false); 
+              } else if (document.body.attachEvent){
+                  document.body.attachEvent('onresize', ForwardMessage);
+              }
  
-            // Ensure ForwardMessage is called once after the page is loaded so that
-            // any message sent during page load is eventually passsed on. Particularly
-            // needed if you are looking at resizing content.
-        setTimeout('ForwardMessage();', 0);
+              // Ensure ForwardMessage is called once after the page is loaded so that
+              // any message sent during page load is eventually passsed on. Particularly
+              // needed if you are looking at resizing content.
+          setTimeout('ForwardMessage();', 0);
+        }
         
       </script>
-<body>
+<body onload="init();">
 Sample demo for iframe cross domain communication
 <p id="dynamic">The place where id is stored</p>
 </body>
