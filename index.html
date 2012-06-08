@@ -14,7 +14,7 @@
         if (window.addEventListener){
                 window.addEventListener('resize', ForwardMessage, false); 
             } else if (document.body.attachEvent){
-                window.attachEvent('onresize', ForwardMessage);
+                document.body.attachEvent('onresize', ForwardMessage);
             }
  
             // Ensure ForwardMessage is called once after the page is loaded so that
