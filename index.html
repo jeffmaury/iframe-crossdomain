@@ -14,12 +14,12 @@
         // Hook up the Forward Message dependent on browser. FF will only raise the
         // resize event on the window / body.
         function init() {
-        	if (document.body.attachEvent){
+        	/*if (document.body.attachEvent){
                 document.body.attachEvent('onresize', ForwardMessage);
             } else {
                   window.addEventListener('resize', ForwardMessage, false); 
-              }
- 
+              }*/
+              window.addEventListener('resize', ForwardMessage, false);
               // Ensure ForwardMessage is called once after the page is loaded so that
               // any message sent during page load is eventually passsed on. Particularly
               // needed if you are looking at resizing content.
